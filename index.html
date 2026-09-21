@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Первые компьютеры — интерактивная история</title>
+  <meta name="description" content="Интерактивная страница о первых компьютерах: история, фотографии, сравнение, двоичная система и игры.">
+  <style>
+    :root {
+      --bg: #08101f;
+      --panel: #111c31;
+      --panel2: #17253f;
+      --panel3: #0d1628;
+      --text: #eef5ff;
+      --muted: #9fb0ca;
+      --accent: #64e4ff;
+      --accent2: #ffd166;
+      --accent3: #8df0a5;
+      --danger: #ff7b72;
+      --line: #293b5c;
+      --shadow: 0 20px 60px rgba(0,0,0,.28);
+    }
+
+    body.light {
+      --bg: #eef3f8;
+      --panel: #ffffff;
+      --panel2: #f4f7fb;
+      --panel3: #e9eef5;
+      --text: #162033;
+      --muted: #607089;
+      --accent: #007d9f;
+      --accent2: #a85c00;
+      --accent3: #177a39;
+      --danger: #b42318;
+      --line: #d4deea;
+      --shadow: 0 18px 45px rgba(40,60,90,.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(100,228,255,.10), transparent 28%),
+        radial-gradient(circle at 85% 8%, rgba(255,209,102,.07), transparent 24%),
+        var(--bg);
+      transition: .25s;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: blur(16px);
+    }
+
+    nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      font-weight: 900;
+      letter-spacing: .05em;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: var(--panel);
+      padding: 10px 14px;
+      border-radius: 13px;
+      cursor: pointer;
+      transition: .18s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      border-color: transparent;
+      color: #051018;
+      font-weight: 900;
+    }
+
+    .hero {
+      min-height: 76vh;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 44px;
+      align-items: center;
+      padding: 78px 0 52px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: 13px;
+    }
+
+    h1 {
+      font-size: clamp(48px, 7vw, 94px);
+      line-height: .95;
+      margin: 12px 0 24px;
+    }
+
+    .lead {
+      font-size: clamp(18px, 2vw, 24px);
+      color: var(--muted);
+      max-width: 780px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .hero-photo {
+      position: relative;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 430px;
+      object-fit: cover;
+      filter: saturate(.85) contrast(1.03);
+    }
+
+    .photo-caption {
+      padding: 15px 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .floating-chip {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(5,10,20,.76);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      backdrop-filter: blur(10px);
+    }
+
+    section {
+      padding: 78px 0;
+    }
+
+    .section-title {
+      font-size: clamp(34px, 4vw, 56px);
+      margin: 0 0 12px;
+      line-height: 1.08;
+    }
+
+    .section-text {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 860px;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin-top: 34px;
+    }
+
+    .story-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      min-width: 0;
+      transition: .2s;
+    }
+
+    .story-card:hover {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--accent) 65%, var(--line));
+    }
+
+    .story-card img {
+      width: 100%;
+      height: 290px;
+      object-fit: cover;
+      background: var(--panel3);
+    }
+
+    .story-body {
+      padding: 22px;
+    }
+
+    .story-year {
+      color: var(--accent2);
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .story-body h3 {
+      font-size: 30px;
+      margin: 5px 0 8px;
+    }
+
+    .story-body p {
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      background: var(--panel2);
+      color: var(--muted);
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+
+    .wide-card {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+    }
+
+    .wide-card img {
+      height: 100%;
+      min-height: 340px;
+    }
+
+    .timeline {
+      margin-top: 34px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .event {
+      display: grid;
+      grid-template-columns: 115px 1fr auto;
+      gap: 20px;
+      align-items: center;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 20px;
+      cursor: pointer;
+      transition: .18s;
+    }
+
+    .event:hover {
+      border-color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    .event.active {
+      border-color: var(--accent);
+      box-shadow: inset 4px 0 0 var(--accent);
+    }
+
+    .year {
+      font-size: 27px;
+      font-weight: 900;
+      color: var(--accent2);
+    }
+
+    .event h3 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .event p {
+      color: var(--muted);
+      margin: 2px 0 0;
+    }
+
+    .arrow {
+      color: var(--accent);
+      font-size: 24px;
+    }
+
+    .detail-panel {
+      margin-top: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, var(--panel), var(--panel2));
+      border-radius: 24px;
+      padding: 26px;
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 26px;
+      align-items: start;
+      box-shadow: var(--shadow);
+    }
+
+    .detail-panel h3 {
+      font-size: 32px;
+      margin: 0 0 8px;
+    }
+
+    .detail-panel p {
+      color: var(--muted);
+    }
+
+    .detail-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 15px;
+      background: var(--panel3);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 22px;
+      color: var(--accent);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .how {
+      position: relative;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 20px;
+      padding: 20px;
+      min-height: 210px;
+    }
+
+    .how-number {
+      font-size: 46px;
+      font-weight: 900;
+      color: color-mix(in srgb, var(--accent) 65%, transparent);
+      line-height: 1;
+    }
+
+    .how h3 {
+      margin: 18px 0 6px;
+    }
+
+    .how p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr .75fr;
+      grid-template-rows: 250px 250px;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .gallery figure {
+      margin: 0;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      position: relative;
+    }
+
+    .gallery figure:first-child {
+      grid-row: 1 / 3;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery figcaption {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      background: rgba(4,9,18,.78);
+      color: white;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 13px;
+      backdrop-filter: blur(8px);
+    }
+
+    .compare-wrap {
+      overflow-x: auto;
+      margin-top: 32px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 780px;
+      background: var(--panel);
+    }
+
+    th, td {
+      text-align: left;
+      padding: 15px 17px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      background: var(--panel2);
+      color: var(--accent);
+    }
+
+    td {
+      color: var(--muted);
+    }
+
+    td:first-child {
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .game {
+      margin-top: 30px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: linear-gradient(145deg, var(--panel), var(--panel2));
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .game-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .mission {
+      font-size: 22px;
+      margin: 5px 0 0;
+    }
+
+    .target {
+      font-size: clamp(54px, 9vw, 92px);
+      font-weight: 900;
+      color: var(--accent2);
+      line-height: 1;
+      text-align: right;
+    }
+
+    .bits {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .bit-wrap {
+      text-align: center;
+      min-width: 0;
+    }
+
+    .bit-value {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+
+    .bit {
+      width: 100%;
+      min-height: 80px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #07101d;
+      color: #6a7a91;
+      font-size: 30px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: .15s;
+    }
+
+    .bit.on {
+      background: var(--accent2);
+      color: #201600;
+      border-color: transparent;
+      box-shadow: 0 0 24px color-mix(in srgb, var(--accent2) 35%, transparent);
+    }
+
+    .game-display {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 14px 16px;
+      background: #050a12;
+      color: #8cff9a;
+      font-family: Consolas, monospace;
+      font-size: 20px;
+    }
+
+    .game-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+      align-items: center;
+    }
+
+    .game-message {
+      color: var(--muted);
+      flex: 1 1 250px;
+    }
+
+    .score-box {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      color: var(--muted);
+    }
+
+    .score-pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 10px;
+      background: var(--panel3);
+    }
+
+    .quiz {
+      margin-top: 32px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 26px;
+    }
+
+    .question {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .answers {
+      display: grid;
+      gap: 10px;
+    }
+
+    .answer {
+      text-align: left;
+      padding: 13px 15px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      background: var(--panel3);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .answer:hover {
+      border-color: var(--accent);
+    }
+
+    .answer.correct {
+      border-color: var(--accent3);
+      background: color-mix(in srgb, var(--accent3) 12%, var(--panel3));
+    }
+
+    .answer.wrong {
+      border-color: var(--danger);
+      background: color-mix(in srgb, var(--danger) 10%, var(--panel3));
+    }
+
+    .quiz-footer {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      color: var(--muted);
+    }
+
+    .sources {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 26px;
+    }
+
+    .sources a {
+      color: var(--accent);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 36px 0 50px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .detail-panel,
+      .wide-card {
+        grid-template-columns: 1fr;
+      }
+
+      .story-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wide-card {
+        grid-column: auto;
+      }
+
+      .how-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 260px 220px 220px;
+      }
+
+      .gallery figure:first-child {
+        grid-column: 1 / -1;
+        grid-row: auto;
+      }
+    }
+
+    @media (max-width: 650px) {
+      header {
+        position: static;
+      }
+
+      nav {
+        align-items: flex-start;
+        padding: 14px 0;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .hero-photo img {
+        height: 300px;
+      }
+
+      .event {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .arrow {
+        display: none;
+      }
+
+      .how-grid,
+      .detail-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 240px);
+      }
+
+      .gallery figure:first-child {
+        grid-column: auto;
+      }
+
+      .bits {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .game-top {
+        grid-template-columns: 1fr;
+      }
+
+      .target {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">ПЕРВЫЕ КОМПЬЮТЕРЫ</div>
+        <div class="nav-links">
+          <button class="btn" data-go="history">История</button>
+          <button class="btn" data-go="gallery">Фото</button>
+          <button class="btn" data-go="game">Игра</button>
+          <button class="btn" data-go="quiz">Викторина</button>
+          <button class="btn" id="themeBtn">☀ / ☾</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero">
+      <div>
+        <div class="eyebrow">История вычислительной техники</div>
+        <h1>Первые компьютеры</h1>
+        <p class="lead">
+          Сегодня компьютер помещается в кармане. В 1940-х вычислительная машина могла занимать целый зал,
+          содержать тысячи ламп, километры проводов и требовать отдельную команду операторов.
+        </p>
+        <div class="hero-actions">
+          <button class="btn primary" data-go="history">Начать путешествие</button>
+          <button class="btn" data-go="game">Запустить игру</button>
+        </div>
+      </div>
+
+      <div class="hero-photo">
+        <span class="floating-chip">ENIAC · 1940-е</span>
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Classic%20shot%20of%20the%20ENIAC%20%28full%20resolution%29.jpg"
+          alt="Историческая фотография компьютера ENIAC"
+        >
+        <div class="photo-caption">
+          ENIAC занимал большую площадь и программировался переключателями и соединительными кабелями.
+        </div>
+      </div>
+    </section>
+
+    <section id="history">
+      <div class="container">
+        <h2 class="section-title">Пять машин, изменивших историю</h2>
+        <p class="section-text">
+          Понятие «первый компьютер» зависит от критерия: электронный или электромеханический,
+          универсальный или специализированный, программируемый или с хранимой программой.
+          Поэтому история состоит сразу из нескольких важных машин.
+        </p>
+
+        <div class="story-grid">
+          <article class="story-card">
+            <img
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/Z3%20Deutsches%20Museum.JPG"
+              alt="Реконструкция компьютера Z3"
+            >
+            <div class="story-body">
+              <div class="story-year">1941 · Германия</div>
+              <h3>Z3</h3>
+              <p>
+                Конрад Цузе построил программируемую электромеханическую машину на реле.
+                Программа подавалась с перфорированной плёнки. Z3 использовал двоичную систему и
+                выполнял арифметические операции автоматически.
+              </p>
+              <div class="tags">
+                <span class="tag">реле</span>
+                <span class="tag">двоичная система</span>
+                <span class="tag">перфолента</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="story-card">
+            <img
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/Colossus%20computer.jpg"
+              alt="Реконструкция компьютера Colossus"
+            >
+            <div class="story-body">
+              <div class="story-year">1943–1944 · Великобритания</div>
+              <h3>Colossus</h3>
+              <p>
+                Электронная вычислительная система, разработанная для криптоанализа.
+                Вместо медленных механических реле использовались электронные лампы.
+                Данные считывались с бумажной перфоленты.
+              </p>
+              <div class="tags">
+                <span class="tag">лампы</span>
+                <span class="tag">криптоанализ</span>
+                <span class="tag">перфолента</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="story-card">
+            <img
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/Harvard%20Mark%20I.jpg"
+              alt="Компьютер Harvard Mark I"
+            >
+            <div class="story-body">
+              <div class="story-year">1944 · США</div>
+              <h3>Harvard Mark I</h3>
+              <p>
+                Огромная электромеханическая машина, созданная при участии Говарда Айкена и IBM.
+                Она автоматически выполняла длинные последовательности вычислений и использовалась
+                для научных и военных расчётов.
+              </p>
+              <div class="tags">
+                <span class="tag">электромеханика</span>
+                <span class="tag">реле</span>
+                <span class="tag">автоматические вычисления</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="story-card">
+            <img
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/ENIAC-changing%20a%20tube%20%28cropped%29.jpg"
+              alt="Обслуживание электронных ламп ENIAC"
+            >
+            <div class="story-body">
+              <div class="story-year">1945–1946 · США</div>
+              <h3>ENIAC</h3>
+              <p>
+                Один из первых универсальных электронных цифровых компьютеров.
+                В нём было около 18 тысяч электронных ламп. Перенастройка задачи сначала требовала
+                изменения соединений кабелей и положения большого количества переключателей.
+              </p>
+              <div class="tags">
+                <span class="tag">≈ 18 000 ламп</span>
+                <span class="tag">электронный</span>
+                <span class="tag">универсальный</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="story-card wide-card">
+            <div class="story-body">
+              <div class="story-year">1951 · СССР</div>
+              <h3>МЭСМ</h3>
+              <p>
+                Малая электронная счётная машина создавалась под руководством Сергея Лебедева.
+                Она стала одной из первых действующих электронных вычислительных машин в континентальной Европе.
+              </p>
+              <p>
+                Появление МЭСМ стало отправной точкой для дальнейшего развития советских электронных
+                вычислительных машин. После неё появились новые проекты, включая семейство БЭСМ.
+              </p>
+              <div class="tags">
+                <span class="tag">электронные лампы</span>
+                <span class="tag">1951</span>
+                <span class="tag">Сергей Лебедев</span>
+              </div>
+            </div>
+            <div style="background:linear-gradient(135deg,var(--panel3),var(--panel2));display:flex;align-items:center;justify-content:center;padding:36px;">
+              <div style="max-width:520px">
+                <div style="font-family:Consolas,monospace;color:var(--accent3);font-size:clamp(24px,4vw,48px);line-height:1.35">
+                  10110101<br>
+                  00101100<br>
+                  11100010<br>
+                  01010111
+                </div>
+                <p style="color:var(--muted);margin-top:20px">
+                  Ранние цифровые машины уже работали с тем же фундаментальным принципом:
+                  данные представляются числами, а машина выполняет последовательность операций.
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Интерактивная хронология</h2>
+        <p class="section-text">Нажимай на машину и смотри подробности.</p>
+
+        <div class="timeline">
+          <div class="event active" data-machine="z3">
+            <div class="year">1941</div>
+            <div><h3>Z3</h3><p>Реле, двоичные числа, программа на перфоленте.</p></div>
+            <div class="arrow">→</div>
+          </div>
+
+          <div class="event" data-machine="colossus">
+            <div class="year">1943</div>
+            <div><h3>Colossus</h3><p>Электронная обработка данных для криптоанализа.</p></div>
+            <div class="arrow">→</div>
+          </div>
+
+          <div class="event" data-machine="mark1">
+            <div class="year">1944</div>
+            <div><h3>Harvard Mark I</h3><p>Большая автоматическая электромеханическая машина.</p></div>
+            <div class="arrow">→</div>
+          </div>
+
+          <div class="event" data-machine="eniac">
+            <div class="year">1946</div>
+            <div><h3>ENIAC</h3><p>Универсальная электронная цифровая вычислительная машина.</p></div>
+            <div class="arrow">→</div>
+          </div>
+
+          <div class="event" data-machine="mesm">
+            <div class="year">1951</div>
+            <div><h3>МЭСМ</h3><p>Важный этап развития электронной вычислительной техники в СССР.</p></div>
+            <div class="arrow">→</div>
+          </div>
+        </div>
+
+        <div class="detail-panel" id="detailPanel">
+          <div>
+            <div class="eyebrow" id="detailMeta">Германия · 1941</div>
+            <h3 id="detailTitle">Z3</h3>
+            <p id="detailText"></p>
+          </div>
+          <div class="detail-stats" id="detailStats"></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Как работал ранний компьютер</h2>
+        <p class="section-text">
+          Современный процессор делает эти шаги миллиарды раз в секунду. В первых машинах каждый этап
+          был намного заметнее физически.
+        </p>
+
+        <div class="how-grid">
+          <div class="how">
+            <div class="how-number">01</div>
+            <h3>Ввод данных</h3>
+            <p>Перфокарты, перфолента, переключатели и другие устройства задавали числа и команды.</p>
+          </div>
+          <div class="how">
+            <div class="how-number">02</div>
+            <h3>Управление</h3>
+            <p>Схемы управления определяли, какая операция должна выполняться следующей.</p>
+          </div>
+          <div class="how">
+            <div class="how-number">03</div>
+            <h3>Вычисление</h3>
+            <p>Реле или электронные лампы переключали состояния и реализовывали логические операции.</p>
+          </div>
+          <div class="how">
+            <div class="how-number">04</div>
+            <h3>Результат</h3>
+            <p>Ответ выводился на печать, лампы, счётчики или другие устройства вывода.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <h2 class="section-title">Фотогалерея</h2>
+        <p class="section-text">
+          На старых фотографиях особенно хорошо видно, насколько физическим был компьютер:
+          шкафы, кабели, панели, лампы, переключатели и механические узлы.
+        </p>
+
+        <div class="gallery">
+          <figure>
+            <img
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/Classic%20shot%20of%20the%20ENIAC%20%28full%20resolution%29.jpg"
+              alt="ENIAC в рабочем помещении"
+            >
+            <figcaption>ENIAC: панели и ручные переключатели</figcaption>
+          </figure>
+
+          <figure>
+            <img
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/Z3%20Deutsches%20Museum.JPG"
+              alt="Реконструкция Z3"
+            >
+            <figcaption>Z3: реконструкция в Немецком музее</figcaption>
+          </figure>
+
+          <figure>
+            <img
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/Harvard%20Mark%20I%20Computer%20-%20Right%20Segment.JPG"
+              alt="Фрагмент Harvard Mark I"
+            >
+            <figcaption>Harvard Mark I: фрагмент машины</figcaption>
+          </figure>
+
+          <figure>
+            <img
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/Colossus%20computer.jpg"
+              alt="Компьютер Colossus"
+            >
+            <figcaption>Colossus: восстановленная машина</figcaption>
+          </figure>
+
+          <figure>
+            <img
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/ENIAC-changing%20a%20tube%20%28cropped%29.jpg"
+              alt="Замена электронной лампы ENIAC"
+            >
+            <figcaption>Обслуживание электронных ламп ENIAC</figcaption>
+          </figure>
+        </div>
+
+        <div class="sources">
+          Фотографии загружаются с Wikimedia Commons. Если открыть страницу без интернета,
+          текст и игры продолжат работать, а фотографии могут не загрузиться.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Сравним машины</h2>
+
+        <div class="compare-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Машина</th>
+                <th>Год</th>
+                <th>Технология</th>
+                <th>Программирование</th>
+                <th>Главная особенность</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Z3</td>
+                <td>1941</td>
+                <td>Электромеханические реле</td>
+                <td>Перфолента</td>
+                <td>Автоматическая программируемая машина</td>
+              </tr>
+              <tr>
+                <td>Colossus</td>
+                <td>1943–44</td>
+                <td>Электронные лампы</td>
+                <td>Переключатели и коммутация</td>
+                <td>Высокоскоростная обработка данных для криптоанализа</td>
+              </tr>
+              <tr>
+                <td>Harvard Mark I</td>
+                <td>1944</td>
+                <td>Электромеханика</td>
+                <td>Перфолента и органы управления</td>
+                <td>Длинные автоматические последовательности расчётов</td>
+              </tr>
+              <tr>
+                <td>ENIAC</td>
+                <td>1946</td>
+                <td>Электронные лампы</td>
+                <td>Кабели и переключатели</td>
+                <td>Универсальные электронные цифровые вычисления</td>
+              </tr>
+              <tr>
+                <td>МЭСМ</td>
+                <td>1951</td>
+                <td>Электронные лампы</td>
+                <td>Машинные команды</td>
+                <td>Одна из первых электронных машин континентальной Европы</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="game">
+      <div class="container">
+        <h2 class="section-title">Игра: оператор двоичной машины</h2>
+        <p class="section-text">
+          Компьютер дал тебе десятичное число. Включи нужные биты так, чтобы двоичная панель
+          показала это число. Вес каждого переключателя написан сверху.
+        </p>
+
+        <div class="game">
+          <div class="game-top">
+            <div>
+              <div class="eyebrow">Задание</div>
+              <div class="mission">Собери число на восьми переключателях:</div>
+            </div>
+            <div class="target" id="targetNumber">173</div>
+          </div>
+
+          <div class="bits" id="bits"></div>
+
+          <div class="game-display" id="binaryDisplay">00000000₂ = 0₁₀</div>
+
+          <div class="score-box">
+            <span class="score-pill" id="gameScore">Очки: 0</span>
+            <span class="score-pill" id="gameAttempts">Попытки: 0</span>
+            <span class="score-pill" id="gameStreak">Серия: 0</span>
+          </div>
+
+          <div class="game-actions">
+            <button class="btn primary" id="checkGame">Проверить</button>
+            <button class="btn" id="newGame">Новое число</button>
+            <button class="btn" id="hintGame">Подсказка</button>
+            <span class="game-message" id="gameMessage">Нажимай на 0 и 1.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz">
+      <div class="container">
+        <h2 class="section-title">Викторина</h2>
+        <p class="section-text">Проверь, что запомнилось после страницы.</p>
+
+        <div class="quiz">
+          <div id="quizBox"></div>
+          <div class="quiz-footer">
+            <span id="quizScore">Счёт: 0</span>
+            <button class="btn" id="nextQuestion">Следующий вопрос</button>
+          </div>
+        </div>
+
+        <div class="sources">
+          Источники для дополнительного чтения:
+          <a href="https://www.computerhistory.org/" target="_blank" rel="noopener">Computer History Museum</a>,
+          <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Учебный интерактивный проект «Первые компьютеры». Один файл index.html — подходит для GitHub Pages.
+    </div>
+  </footer>
+
+  <script>
+    const machineData = {
+      z3: {
+        meta: "Германия · 1941",
+        title: "Z3",
+        text: "Z3 Конрада Цузе была программируемой электромеханической машиной. Она использовала двоичные числа и реле. Команды считывались с перфорированной плёнки.",
+        stats: [
+          ["Технология", "Реле"],
+          ["Числа", "Двоичные"],
+          ["Программа", "Перфолента"],
+          ["Создатель", "Конрад Цузе"]
+        ]
+      },
+      colossus: {
+        meta: "Великобритания · 1943–1944",
+        title: "Colossus",
+        text: "Colossus создавался для криптоанализа во время Второй мировой войны. Электронные лампы позволяли обрабатывать данные значительно быстрее электромеханических устройств.",
+        stats: [
+          ["Технология", "Электронные лампы"],
+          ["Назначение", "Криптоанализ"],
+          ["Ввод", "Перфолента"],
+          ["Разработка", "Команда Томми Флауэрса"]
+        ]
+      },
+      mark1: {
+        meta: "США · 1944",
+        title: "Harvard Mark I",
+        text: "Harvard Mark I был большим электромеханическим вычислителем. Машина автоматически выполняла последовательности арифметических операций и применялась для сложных расчётов.",
+        stats: [
+          ["Тип", "Электромеханический"],
+          ["Длина", "Около 15 м"],
+          ["Разработчик", "Говард Айкен и команда"],
+          ["Партнёр", "IBM"]
+        ]
+      },
+      eniac: {
+        meta: "США · 1945–1946",
+        title: "ENIAC",
+        text: "ENIAC стал одной из самых известных ранних электронных цифровых машин. В нём применялись тысячи электронных ламп. Для смены задачи операторы работали с кабелями и переключателями.",
+        stats: [
+          ["Лампы", "≈ 18 000"],
+          ["Тип", "Электронный"],
+          ["Назначение", "Универсальные расчёты"],
+          ["Программирование", "Панели и кабели"]
+        ]
+      },
+      mesm: {
+        meta: "СССР · 1951",
+        title: "МЭСМ",
+        text: "МЭСМ создавалась под руководством Сергея Лебедева. Это была важная ранняя электронная вычислительная машина, после которой развитие вычислительной техники в СССР ускорилось.",
+        stats: [
+          ["Технология", "Электронные лампы"],
+          ["Год работы", "1951"],
+          ["Руководитель", "Сергей Лебедев"],
+          ["Страна", "СССР"]
+        ]
+      }
+    };
+
+    const detailMeta = document.getElementById("detailMeta");
+    const detailTitle = document.getElementById("detailTitle");
+    const detailText = document.getElementById("detailText");
+    const detailStats = document.getElementById("detailStats");
+
+    function showMachine(key) {
+      const d = machineData[key];
+      detailMeta.textContent = d.meta;
+      detailTitle.textContent = d.title;
+      detailText.textContent = d.text;
+      detailStats.innerHTML = d.stats.map(item => `
+        <div class="stat">
+          <strong>${item[1]}</strong>
+          <span>${item[0]}</span>
+        </div>
+      `).join("");
+
+      document.querySelectorAll(".event").forEach(el => {
+        el.classList.toggle("active", el.dataset.machine === key);
+      });
+    }
+
+    document.querySelectorAll(".event").forEach(el => {
+      el.addEventListener("click", () => showMachine(el.dataset.machine));
+    });
+
+    document.querySelectorAll("[data-go]").forEach(button => {
+      button.addEventListener("click", () => {
+        document.getElementById(button.dataset.go).scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    document.getElementById("themeBtn").addEventListener("click", () => {
+      document.body.classList.toggle("light");
+    });
+
+    showMachine("z3");
+
+    const bitsBox = document.getElementById("bits");
+    const binaryDisplay = document.getElementById("binaryDisplay");
+    const targetNumber = document.getElementById("targetNumber");
+    const gameMessage = document.getElementById("gameMessage");
+    const gameScoreEl = document.getElementById("gameScore");
+    const gameAttemptsEl = document.getElementById("gameAttempts");
+    const gameStreakEl = document.getElementById("gameStreak");
+
+    const weights = [128, 64, 32, 16, 8, 4, 2, 1];
+    let bitState = new Array(8).fill(0);
+    let target = 173;
+    let gameScore = 0;
+    let attempts = 0;
+    let streak = 0;
+    let solvedCurrent = false;
+
+    weights.forEach((weight, index) => {
+      const wrap = document.createElement("div");
+      wrap.className = "bit-wrap";
+
+      const label = document.createElement("div");
+      label.className = "bit-value";
+      label.textContent = weight;
+
+      const button = document.createElement("button");
+      button.className = "bit";
+      button.type = "button";
+      button.textContent = "0";
+      button.setAttribute("aria-label", `Переключатель со значением ${weight}`);
+
+      button.addEventListener("click", () => {
+        if (solvedCurrent) return;
+        bitState[index] = bitState[index] ? 0 : 1;
+        button.classList.toggle("on", bitState[index] === 1);
+        button.textContent = bitState[index];
+        updateGameDisplay();
+      });
+
+      wrap.append(label, button);
+      bitsBox.appendChild(wrap);
+    });
+
+    function currentValue() {
+      return bitState.reduce((sum, bit, index) => sum + bit * weights[index], 0);
+    }
+
+    function updateGameDisplay() {
+      const binary = bitState.join("");
+      binaryDisplay.textContent = `${binary}₂ = ${currentValue()}₁₀`;
+    }
+
+    function resetBits() {
+      bitState = new Array(8).fill(0);
+      document.querySelectorAll(".bit").forEach(button => {
+        button.classList.remove("on");
+        button.textContent = "0";
+      });
+      updateGameDisplay();
+    }
+
+    function newTarget() {
+      target = Math.floor(Math.random() * 255) + 1;
+      targetNumber.textContent = target;
+      solvedCurrent = false;
+      resetBits();
+      gameMessage.textContent = "Новое число. Собери его переключателями.";
+    }
+
+    document.getElementById("checkGame").addEventListener("click", () => {
+      if (solvedCurrent) {
+        gameMessage.textContent = "Это число уже собрано. Нажми «Новое число».";
+        return;
+      }
+
+      attempts++;
+      const value = currentValue();
+
+      if (value === target) {
+        solvedCurrent = true;
+        streak++;
+        const bonus = 10 + streak * 2;
+        gameScore += bonus;
+        gameMessage.textContent = `Верно! +${bonus} очков. Двоичный код: ${bitState.join("")}.`;
+      } else {
+        streak = 0;
+        const difference = Math.abs(target - value);
+        gameMessage.textContent = value < target
+          ? `Пока мало. Нужно добавить ${difference}.`
+          : `Слишком много. Нужно убрать ${difference}.`;
+      }
+
+      gameScoreEl.textContent = `Очки: ${gameScore}`;
+      gameAttemptsEl.textContent = `Попытки: ${attempts}`;
+      gameStreakEl.textContent = `Серия: ${streak}`;
+    });
+
+    document.getElementById("newGame").addEventListener("click", newTarget);
+
+    document.getElementById("hintGame").addEventListener("click", () => {
+      const correctBinary = target.toString(2).padStart(8, "0");
+      let firstWrong = -1;
+
+      for (let i = 0; i < correctBinary.length; i++) {
+        if (Number(correctBinary[i]) !== bitState[i]) {
+          firstWrong = i;
+          break;
+        }
+      }
+
+      if (firstWrong === -1) {
+        gameMessage.textContent = "Все переключатели уже стоят правильно. Нажми «Проверить».";
+      } else {
+        gameMessage.textContent =
+          `Подсказка: переключатель ${weights[firstWrong]} должен быть ${correctBinary[firstWrong]}.`;
+      }
+    });
+
+    updateGameDisplay();
+
+    const questions = [
+      {
+        q: "Какая машина была построена Конрадом Цузе?",
+        a: ["ENIAC", "Z3", "Colossus", "МЭСМ"],
+        c: 1
+      },
+      {
+        q: "Какая технология использовалась в ENIAC?",
+        a: ["Транзисторы", "Микропроцессоры", "Электронные лампы", "Оптоволокно"],
+        c: 2
+      },
+      {
+        q: "Для чего создавался Colossus?",
+        a: ["Для компьютерных игр", "Для криптоанализа", "Для банковских переводов", "Для интернета"],
+        c: 1
+      },
+      {
+        q: "Кто руководил созданием МЭСМ?",
+        a: ["Сергей Лебедев", "Конрад Цузе", "Говард Айкен", "Томми Флауэрс"],
+        c: 0
+      },
+      {
+        q: "Что использовалось для задания программ и данных в ранних машинах?",
+        a: ["Только сенсорные экраны", "Перфолента и переключатели", "Облачное хранилище", "Wi‑Fi"],
+        c: 1
+      }
+    ];
+
+    let quizIndex = 0;
+    let quizScore = 0;
+    let quizAnswered = false;
+
+    const quizBox = document.getElementById("quizBox");
+    const quizScoreEl = document.getElementById("quizScore");
+    const nextQuestion = document.getElementById("nextQuestion");
+
+    function renderQuiz() {
+      quizAnswered = false;
+      const item = questions[quizIndex];
+
+      quizBox.innerHTML = `
+        <div class="question">${quizIndex + 1}. ${item.q}</div>
+        <div class="answers">
+          ${item.a.map((answer, index) =>
+            `<button class="answer" type="button" data-answer="${index}">${answer}</button>`
+          ).join("")}
+        </div>
+      `;
+
+      quizBox.querySelectorAll(".answer").forEach(button => {
+        button.addEventListener("click", () => {
+          if (quizAnswered) return;
+          quizAnswered = true;
+
+          const selected = Number(button.dataset.answer);
+
+          quizBox.querySelectorAll(".answer").forEach((btn, index) => {
+            if (index === item.c) btn.classList.add("correct");
+          });
+
+          if (selected === item.c) {
+            quizScore++;
+          } else {
+            button.classList.add("wrong");
+          }
+
+          quizScoreEl.textContent = `Счёт: ${quizScore}`;
+        });
+      });
+    }
+
+    nextQuestion.addEventListener("click", () => {
+      if (nextQuestion.textContent === "Начать заново") {
+        quizIndex = 0;
+        quizScore = 0;
+        quizScoreEl.textContent = "Счёт: 0";
+        nextQuestion.textContent = "Следующий вопрос";
+        renderQuiz();
+        return;
+      }
+
+      quizIndex++;
+
+      if (quizIndex >= questions.length) {
+        quizBox.innerHTML = `
+          <div class="question">Готово! Результат: ${quizScore} из ${questions.length}</div>
+          <p style="color:var(--muted)">
+            Можно пройти страницу ещё раз и попробовать улучшить результат.
+          </p>
+        `;
+        nextQuestion.textContent = "Начать заново";
+        return;
+      }
+
+      renderQuiz();
+    });
+
+    renderQuiz();
+  </script>
+</body>
+</html>
